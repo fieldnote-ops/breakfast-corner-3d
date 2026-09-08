@@ -73,7 +73,7 @@ $('#save-image').onclick=()=>{renderer.render(scene,camera);const url=canvas.toD
 const labels={table:new THREE.Vector3(.10,.755,.30),seat:new THREE.Vector3(-.01,.45,.94),sill:new THREE.Vector3(-.7,.903,.65)};
 function resize(){const w=innerWidth,h=$('#stage').clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
 addEventListener('resize',resize);resize();applyView('reference',false);
-new GLTFLoader().load('./assets/breakfast-corner.glb?v=window-frame-2',gltf=>{
+new GLTFLoader().load('./assets/breakfast-corner.glb?v=artisan-toast-3',gltf=>{
  let meshes=0;
  gltf.scene.traverse(o=>{if(o.isMesh){meshes++;o.castShadow=true;o.receiveShadow=true;if(o.name.startsWith('GLASS')){o.castShadow=false;o.receiveShadow=false;o.material=new THREE.MeshPhysicalMaterial({color:0xe2ebe0,transparent:true,opacity:.075,roughness:.12,metalness:.05,depthWrite:false,side:THREE.DoubleSide});}if(o.name.includes('Tree_leaves')||o.name.includes('Tree leaves')){o.material.side=THREE.DoubleSide;o.material.shadowSide=THREE.DoubleSide;windMaterial(o.material);o.customDepthMaterial=windMaterial(new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,side:THREE.DoubleSide}));o.frustumCulled=false;}}});
  scene.add(gltf.scene);ready=true;$('#loading').remove();canvas.dataset.loaded='true';console.info(`Breakfast model loaded: ${meshes} meshes`);
