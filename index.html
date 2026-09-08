@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>窗边早餐 · A quiet morning</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><text y=%2260%22 font-size=%2260%22>☀</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body>
+<main id="stage" aria-label="可旋转的窗边早餐三维场景">
+<canvas id="scene" tabindex="0" aria-label="3D 场景，拖动旋转、滚轮缩放、右键拖动平移"></canvas>
+<header><a class="wordmark" href="./">STILL / LIFE <span>空间习作 · 01</span></a><button id="reference" class="text-button">查看原图 ↗</button></header>
+<section class="intro"><p class="eyebrow">A QUIET MORNING</p><h1>窗边，早餐。</h1><p>面向餐桌坐下，让窗台留在身侧。</p></section>
+<nav class="views" aria-label="场景视角">
+<button data-view="reference" aria-pressed="true"><span>01</span> 参考图视角</button>
+<button data-view="seated" aria-pressed="false"><span>02</span> 坐在桌前</button>
+<button data-view="overview" aria-pressed="false"><span>03</span> 空间全貌</button>
+</nav>
+<div id="loading" role="status"><span class="spinner"></span><p>阳光正在落进房间…</p></div>
+<div id="error" hidden role="alert"><h2>场景暂未载入</h2><p id="error-message"></p><button onclick="location.reload()">重新载入</button></div>
+<div id="dimensions" hidden aria-label="空间尺度标注"><span data-point="table">桌面 75 cm</span><span data-point="seat">座面 45 cm</span><span data-point="sill">窗台 90 cm</span></div>
+<aside class="tools" aria-label="场景设置">
+<div class="light-setting"><label for="sun">晨光 <output id="sun-value">75%</output></label><input id="sun" type="range" min="20" max="100" value="75" aria-label="晨光强度"></div>
+<div class="light-setting wind-setting"><label for="wind">窗外微风 <output id="wind-value">45%</output></label><input id="wind" type="range" min="0" max="100" value="45" aria-label="风力"><button id="wind-pause" aria-pressed="false">暂停风</button></div>
+<div class="tool-buttons"><button id="measure" aria-pressed="false" title="显示生活尺度">尺度</button><button id="reset" title="重置当前视角">复位</button><button id="save-image" title="保存当前画面">留影 ↓</button></div>
+<div class="zoom-controls"><button id="zoom-in" aria-label="放大">＋</button><button id="zoom-out" aria-label="缩小">−</button><button id="pan-left" aria-label="向左平移">←</button><button id="pan-right" aria-label="向右平移">→</button></div>
+</aside>
+<footer><div class="caption"><span class="live-dot"></span><span id="view-label" aria-live="polite">参考图视角</span><small id="view-description">暖木、奶油色与树叶的影子。</small></div><p class="hint">拖动旋转 <i>·</i> 滚轮缩放 <i>·</i> 右键平移</p><details class="downloads"><summary>模型文件 ↓</summary><div><a href="assets/breakfast-corner.glb" download>网页通用模型 GLB ↗</a><a href="README.md" download>作品说明 ↗</a></div></details></footer>
+</main>
+<dialog id="reference-dialog"><form method="dialog"><button aria-label="关闭参考图">×</button></form><img src="https://cdn.midjourney.com/8f6983ab-5628-49f5-b181-dee6d77939ba/0_7.png" alt="原始参考图：转角窗、厚窗台、小木桌上的茶杯吐司，以及右下角的坐垫椅"><div><span>原始参考图</span><p>从一张照片，走进一个有尺度的角落。</p></div></dialog>
+<dialog id="capture-dialog"><form method="dialog"><button aria-label="关闭留影">×</button></form><img id="capture-image" alt="当前三维场景的留影"><div><span>这一刻的晨光</span><p>画面已生成。可保存图片，也可右键图像另存为。</p><a id="capture-download" class="capture-link" download="窗边早餐.png">保存图片 ↓</a></div></dialog>
+<script type="module" src="app.js"></script>
+</body></html>
